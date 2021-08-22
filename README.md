@@ -84,7 +84,7 @@ const getAllGhibli = async (req, res) => {
 
 - [x]  **"/titulos/pixar"** Deverá retornar todos os títulos com o estudio Pixar
 
-cconst getAllPixar = async (req, res) =>{const titulos = await Titulo.find().populate('estudio')
+const getAllPixar = async (req, res) =>{const titulos = await Titulo.find().populate('estudio')
 const titulosFiltrados = titulos.filter(titulo => titulo.estudio.nome == "Pixar")
 res.json(titulosFiltrados)}
 
