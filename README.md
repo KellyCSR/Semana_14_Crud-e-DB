@@ -123,7 +123,9 @@ const getAll = async (req, res) => {
 ```
 <br>
 <br>
+
 - [x]  "**/estudios**" Deverá criar um estudio 
+
 ```jsx
 [
 const createStudio = async (req, res) => {
@@ -146,7 +148,9 @@ const createStudio = async (req, res) => {
 ```
 <br>
 <br>
+
 - [x]  "**/titulos**"  Deverá criar um título 
+
 ```jsx
 [
 const createTitle = async (req, res) => {
