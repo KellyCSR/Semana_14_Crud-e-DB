@@ -1,5 +1,5 @@
-# Semana_14_Crud-e-DB
-Exercício da semana 14 na Reprograma - CRUD e DB
+# Semana 14 - Crud e DB
+Abaixo os requisitos e as entregas do projeto 3 na semana 14 do Bootcamp da Reprograma + Accenture - CRUD e DB
 
 ## Sobre o Projeto
 
