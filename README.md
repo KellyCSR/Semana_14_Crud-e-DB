@@ -68,28 +68,86 @@ Onde receberemos cadastros de títulos(filmes e séries) referenciando cada est�
 Acesse o board para conferir as informações de forma visual: https://miro.com/app/board/o9J_lA7Nns8=/
 
 ### Requisitos 
-- [ ]  **"/titulos/marvel"** Deverá retornar todos os títulos com o estudio Marvel
-- [ ]  **"/titulos/ghibli"** Deverá retornar todos os títulos com o estudio Ghibli
-- [ ]  **"/titulos/pixar"** Deverá retornar todos os títulos com o estudio Pixar
+- [x]  **"/titulos/marvel"** Deverá retornar todos os títulos com o estudio Marvel
+const getAllMarvel = async (req, res) => {
+  const titulos = await Titulo.find().populate('estudio')
+  const titulosFiltrados = titulos.filter(titulo => titulo.estudio.nome = "Marvel")
+  res.json(titulosFiltrados)
+}
 
-- [ ]  **"/estudios"** Deverá retornar todos os estudios cadastrados
-- [ ]  "**/titulos**" Deverá retornar todos os títulos cadastrados, cada um fazendo referencia ao seu respectivo estudio
+- [x]  **"/titulos/ghibli"** Deverá retornar todos os títulos com o estudio Ghibli
 
-- [ ]  "**/estudios**" Deverá criar um estudio 
-- [ ]  "**/titulos**"  Deverá criar um título 
+const getAllGhibli = async (req, res) => {
+  const titulos = await Titulo.find().populate('estudio')
+  const titulosFiltrados = titulos.filter(titulo => titulo.estudio.nome = "Ghibli")
+  res.json(titulosFiltrados)}
 
-- [ ]  "/titulos/[ID]" Deverá deletar titulo por id específico e retorna mensagem amigável
-- [ ]  "/estudios/[ID]" Deverá deletar estudio por id específico e retorna mensagem amigável
+- [x]  **"/titulos/pixar"** Deverá retornar todos os títulos com o estudio Pixar
 
-- [ ]  "/titulos/[ID]" Deverá alterar informação específica dentro de um titulo por id específico e retorna o título alterado
-- [ ]  "/estudios/[ID]" Deverá alterar informação específica dentro de um estudio por id específico e retorna o título alterado
+cconst getAllPixar = async (req, res) =>{const titulos = await Titulo.find().populate('estudio')
+const titulosFiltrados = titulos.filter(titulo => titulo.estudio.nome == "Pixar")
+res.json(titulosFiltrados)}
+
+- [x]  **"/estudios"** Deverá retornar todos os estudios cadastrados
+
+const getAll = async (req, res) => {
+  const estudios = await Estudio.find()
+  res.status(200).json(estudios)
+}
+
+- [x]  "**/titulos**" Deverá retornar todos os títulos cadastrados, cada um fazendo referencia ao seu respectivo estudio
+
+const getAll = async (req, res) => {
+  const titulos = await Titulo.find().populate('estudio')
+  res.status(200).json(titulos)
+}
+
+- [x]  "**/estudios**" Deverá criar um estudio 
+
+const createStudio = async (req, res) => {
+  const estudio = new Estudio({
+    _id: new mongoose.Types.ObjectId(),
+    nome: req.body.nome,
+    criadoEm: req.body.criadoEm,
+  })
+  const estudioJaExiste = await Estudio.findOne({nome: req.body.nome})
+  if (estudioJaExiste) {
+    return res.status(409).json({error: 'Estudio ja cadastrado.'})
+  }
+  try{
+    const novoEstudio = await estudio.save()
+    res.status(201).json(novoEstudio)
+  } catch(err) {
+    res.status(400).json({ message: err.message})
+  }
+}
+
+- [x]  "**/titulos**"  Deverá criar um título 
+
+const createTitle = async (req, res) => {
+  const titulo = new Titulo({
+    _id: new mongoose.Types.ObjectId(),
+    nome: req.body.nome,
+    genero: req.body.genero,
+    descricao: req.body.descricao,
+    estudio: req.body.estudio,
+    criadoEm: req.body.criadoEm
+  })
+
+
+- [x]  "/titulos/[ID]" Deverá deletar titulo por id específico e retorna mensagem amigável
+
+- [x]  "/estudios/[ID]" Deverá deletar estudio por id específico e retorna mensagem amigável
+
+- [x]  "/titulos/[ID]" Deverá alterar informação específica dentro de um titulo por id específico e retorna o título alterado
+- [x]  "/estudios/[ID]" Deverá alterar informação específica dentro de um estudio por id específico e retorna o título alterado
 
 
 ### Regras de negócio
 
-- [ ]  Não deverá ser possível criar estudio com o mesmo nome
-- [ ]  Não deverá ser possível criar título com o mesmo nome
-- [ ]  Para criar um novo título, deverá vincular no momento da criação a um estudio já existente no sistema, utilizando o numero do id do estudio correspondente no corpo da requisição
+- [x]  Não deverá ser possível criar estudio com o mesmo nome
+- [x]  Não deverá ser possível criar título com o mesmo nome
+- [x]  Para criar um novo título, deverá vincular no momento da criação a um estudio já existente no sistema, utilizando o numero do id do estudio correspondente no corpo da requisição
 
 <br>
 <br>
