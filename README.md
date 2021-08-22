@@ -69,41 +69,63 @@ Acesse o board para conferir as informações de forma visual: https://miro.com/
 
 ### Requisitos 
 - [x]  **"/titulos/marvel"** Deverá retornar todos os títulos com o estudio Marvel
+```jsx
+[
 const getAllMarvel = async (req, res) => {
   const titulos = await Titulo.find().populate('estudio')
   const titulosFiltrados = titulos.filter(titulo => titulo.estudio.nome = "Marvel")
   res.json(titulosFiltrados)
 }
+```
+<br>
+<br>
 
 - [x]  **"/titulos/ghibli"** Deverá retornar todos os títulos com o estudio Ghibli
-
+```jsx
+[
 const getAllGhibli = async (req, res) => {
   const titulos = await Titulo.find().populate('estudio')
   const titulosFiltrados = titulos.filter(titulo => titulo.estudio.nome = "Ghibli")
   res.json(titulosFiltrados)}
+```
+<br>
+<br>
 
 - [x]  **"/titulos/pixar"** Deverá retornar todos os títulos com o estudio Pixar
-
+```jsx
+[
 const getAllPixar = async (req, res) =>{const titulos = await Titulo.find().populate('estudio')
 const titulosFiltrados = titulos.filter(titulo => titulo.estudio.nome == "Pixar")
 res.json(titulosFiltrados)}
+```
+<br>
+<br>
 
 - [x]  **"/estudios"** Deverá retornar todos os estudios cadastrados
-
+```jsx
+[
 const getAll = async (req, res) => {
   const estudios = await Estudio.find()
   res.status(200).json(estudios)
 }
+```
+<br>
+<br>
 
 - [x]  "**/titulos**" Deverá retornar todos os títulos cadastrados, cada um fazendo referencia ao seu respectivo estudio
-
+```jsx
+[
 const getAll = async (req, res) => {
   const titulos = await Titulo.find().populate('estudio')
   res.status(200).json(titulos)
 }
-
+}
+```
+<br>
+<br>
 - [x]  "**/estudios**" Deverá criar um estudio 
-
+```jsx
+[
 const createStudio = async (req, res) => {
   const estudio = new Estudio({
     _id: new mongoose.Types.ObjectId(),
@@ -121,9 +143,12 @@ const createStudio = async (req, res) => {
     res.status(400).json({ message: err.message})
   }
 }
-
+```
+<br>
+<br>
 - [x]  "**/titulos**"  Deverá criar um título 
-
+```jsx
+[
 const createTitle = async (req, res) => {
   const titulo = new Titulo({
     _id: new mongoose.Types.ObjectId(),
@@ -133,7 +158,9 @@ const createTitle = async (req, res) => {
     estudio: req.body.estudio,
     criadoEm: req.body.criadoEm
   })
-
+```
+<br>
+<br>
 
 - [x]  "/titulos/[ID]" Deverá deletar titulo por id específico e retorna mensagem amigável
 
